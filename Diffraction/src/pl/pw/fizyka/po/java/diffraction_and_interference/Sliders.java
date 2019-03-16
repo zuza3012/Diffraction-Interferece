@@ -88,6 +88,7 @@ public class Sliders extends JPanel
 	JLabel scDis;
 	JLabel slDis;
 	JComboBox<String> slitsQuantity;
+	JLabel label = new JLabel();
 	
 }
 //w tej klasie obslugujemy parametry "symulacyjne" np. zmiana dlugosci fali
