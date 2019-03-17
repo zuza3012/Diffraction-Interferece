@@ -43,7 +43,6 @@ public class Sliders extends JPanel
 		
 		String[] n = {"1","2","3","4","5"};
 		slitsQuantity = new JComboBox<>(n);
-		
 		setLayout(new GridBagLayout());
 		
 		gbc.gridwidth = 1;
