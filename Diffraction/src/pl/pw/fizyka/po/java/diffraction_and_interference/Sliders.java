@@ -10,7 +10,6 @@ public class Sliders extends JPanel
 {
 	Sliders()
 	{	
-		
 		waveLength = new JTextField("576");
 		description1 = new JLabel("Odleglosc od ekranu [m]");
 		description2 = new JLabel("Odleglosc szczelin od siebie [mm]");
