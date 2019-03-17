@@ -39,28 +39,93 @@ public class Sliders extends JPanel
 		
 		scDis = new JLabel(Integer.toString(screenDistance.getValue()));
 		slDis = new JLabel(Integer.toString(slitsDistance.getValue()));
+		simSpeed = new JLabel(Integer.toString(simulationSpeed.getValue()));
 		
 		String[] n = {"1","2","3","4","5"};
 		slitsQuantity = new JComboBox<>(n);
 		
-		this.add(waveLength);
-		this.add(description3);
-		this.add(screenDistance);
-		this.add(description1);
-		this.add(scDis);
-		this.add(slitsDistance);
-		this.add(slDis);
-		this.add(description2);
-		this.add(simulationSpeed);
-		this.add(description4);
-		this.add(slitsQuantity);
-		this.add(description5);
 		
-		this.setLayout(new GridLayout(12,1));
+
+		/*
+		GridLayout layout = new GridLayout(0,2);
+		layout.setWidth("100%");
+		layout.setColumnExpandRatio(0, 0.5f);
+		layout.setColumnExpandRatio(1, 0.5f);
+		layout.addComponent(new Label("foo"), 0, 0);
+		layout.addComponent(new Label("foo"), 1, 0);
+		layout.setSpacing(true);
+		*/
+
+		setLayout(new GridBagLayout());
+		
+		gbc.gridwidth = 1;
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.weightx = 1.0;
+		gbc.weighty = 0.0;
+		gbc.anchor = GridBagConstraints.ABOVE_BASELINE_LEADING;
+				
+		
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		this.add(description3,gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 0;
+		waveLength.setColumns(17);
+		this.add(waveLength,gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		this.add(description1,gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		this.add(screenDistance,gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		this.add(scDis, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 2;
+		this.add(description2,gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 2;
+		this.add(slitsDistance,gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		this.add(slDis, gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		this.add(description4,gbc);
+		
+		gbc.gridx = 2;
+		gbc.gridy = 3;
+		this.add(simulationSpeed,gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 3;
+		this.add(simSpeed,gbc);
+		
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		this.add(description5,gbc);
+		
+		gbc.gridx = 1;
+		gbc.gridy = 4;
+		this.add(slitsQuantity,gbc);
+		
+		
+		//this.setLayout(new GridLayout(12,1));
 		this.setBackground(Color.YELLOW);
 		
 		screenDistance.addChangeListener(new SliderChangeListener());
 		slitsDistance.addChangeListener(new SliderChangeListener());
+		simulationSpeed.addChangeListener(new SliderChangeListener());
 	}
 	
 	public class SliderChangeListener implements ChangeListener
@@ -73,6 +138,9 @@ public class Sliders extends JPanel
 			
 			String value2 = String.format("%d", slitsDistance.getValue());
 			slDis.setText(value2);
+			
+			String value3 = String.format("%d", simulationSpeed.getValue());
+			simSpeed.setText(value3);
 		}
 	}
 	
@@ -80,6 +148,7 @@ public class Sliders extends JPanel
 	JSlider screenDistance;
 	JSlider slitsDistance;
 	JSlider simulationSpeed;
+	
 	JLabel description1;
 	JLabel description2;
 	JLabel description3;
@@ -87,7 +156,10 @@ public class Sliders extends JPanel
 	JLabel description5;
 	JLabel scDis;
 	JLabel slDis;
+	JLabel simSpeed;
 	JComboBox<String> slitsQuantity;
+	
+	GridBagConstraints gbc = new GridBagConstraints();
 	
 }
 //w tej klasie obslugujemy parametry "symulacyjne" np. zmiana dlugosci fali

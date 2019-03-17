@@ -9,8 +9,10 @@ public class Interference extends JFrame
 
 	Interference()
 	{
-		this.setSize(1000,1000);
+		this.setSize(1280,720);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
+		this.setTitle("Diffraction and interference");
 			
 		cWavePanel = new CircularWave();
 		wavePanel = new Wave();
@@ -19,6 +21,8 @@ public class Interference extends JFrame
 		buttonsPanel = new Buttons();
 		graphicsPanel = new JPanel();
 		parametersPanel = new JPanel();
+		mainPanel = new JPanel();
+		menu = new MenuBar();
 		
 		
 		//handling Panels
@@ -29,11 +33,19 @@ public class Interference extends JFrame
 		parametersPanel.add(buttonsPanel);
 		this.add(graphicsPanel);
 		this.add(parametersPanel);
-
+		
+		//adding Panels to mainPanel
+		mainPanel.add(graphicsPanel);
+		mainPanel.add(parametersPanel);
+		this.add(mainPanel);
+				
+		//Menu
+		this.add(menu, BorderLayout.PAGE_START);
+		
 		//Layouts
 		graphicsPanel.setLayout(new GridLayout(3,1));
 		parametersPanel.setLayout(new GridLayout(2,1));
-		this.setLayout(new GridLayout(1,2));
+		mainPanel.setLayout(new GridLayout(1,2));
 	}
 	
 	
@@ -50,6 +62,8 @@ public class Interference extends JFrame
 	Buttons buttonsPanel;
 	JPanel graphicsPanel;
 	JPanel parametersPanel;
+	JPanel mainPanel;
+	MenuBar menu;
 }
 
 //glowna klasa
