@@ -25,3 +25,4 @@ public class Buttons extends JPanel
 	JButton power;
 }
 //w tej klasie obslugujemy parametry "programowe" np. zmiana koloru tla
+//git check from bash

@@ -158,6 +158,7 @@ public class Sliders extends JPanel
 	JLabel slDis;
 	JLabel simSpeed;
 	JComboBox<String> slitsQuantity;
+	JLabel label = new JLabel();
 	
 	GridBagConstraints gbc = new GridBagConstraints();
 	
