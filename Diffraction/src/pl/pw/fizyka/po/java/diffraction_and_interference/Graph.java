@@ -7,7 +7,7 @@ public class Graph extends JPanel
 {
 	Graph()
 	{
-		this.setBackground(Color.RED);
+		this.setBackground(Color.WHITE);
 	}
 }
 //w tej klasie bedzie rysowany wykres natezenia

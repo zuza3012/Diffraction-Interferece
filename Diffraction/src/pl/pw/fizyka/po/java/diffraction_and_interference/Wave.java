@@ -7,7 +7,7 @@ public class Wave extends JPanel
 {
 	Wave()
 	{
-		this.setBackground(Color.BLUE);
+		this.setBackground(Color.GRAY);
 	}
 
 }

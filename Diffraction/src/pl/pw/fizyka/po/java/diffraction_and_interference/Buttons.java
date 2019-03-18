@@ -11,6 +11,38 @@ public class Buttons extends JPanel
 		waveColor = new JButton("Wybierz kolor fali");
 		power = new JButton("ON/OFF");
 		
+		
+		
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
+		
+		
+		GridBagConstraints gbc_bgColor = new GridBagConstraints();
+		gbc_bgColor.insets = new Insets(0, 0, 5, 0);
+		gbc_bgColor.gridx = 8;
+		gbc_bgColor.gridy = 2;
+		add(bgColor, gbc_bgColor);
+		
+	
+		GridBagConstraints gbc_waveColor = new GridBagConstraints();
+		gbc_waveColor.insets = new Insets(0, 0, 5, 0);
+		gbc_waveColor.gridx = 8;
+		gbc_waveColor.gridy = 3;
+		add(waveColor, gbc_waveColor);
+		
+		
+		GridBagConstraints gbc_power = new GridBagConstraints();
+		gbc_power.fill = GridBagConstraints.VERTICAL;
+		gbc_power.gridx = 8;
+		gbc_power.gridy = 5;
+		add(power, gbc_power);
+		
+		
+		
 		this.add(bgColor);
 		this.add(waveColor);
 		this.add(power);

@@ -7,7 +7,7 @@ public class CircularWave extends JPanel
 {
 	CircularWave()
 	{
-		this.setBackground(Color.BLACK);
+		this.setBackground(Color.LIGHT_GRAY);
 	}
 }
 //w tej klasie bedzie rysowana fala kulista
