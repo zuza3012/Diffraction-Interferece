@@ -52,7 +52,7 @@ public class Interference extends JFrame
 		//this.add(menu, BorderLayout.PAGE_START);
 		
 		//Layouts
-		graphicsPanel.setLayout(new GridLayout(3,1));
+		//graphicsPanel.setLayout(new GridLayout(3,1));
 		parametersPanel.setLayout(new GridLayout(2,1));
 		//mainPanel.setLayout(new GridLayout(1,2));
 /////////////////////////////////////////////////////////
