@@ -38,7 +38,7 @@ public class MainController {
     private HBox hbox;
 
     @FXML
-    private TextField slitsNumber, intensity, slitsDistance, lambda, height, distanceScreen; 
+    private TextField slitsNumber, intensity, slitsDistance, lambda, distanceScreen; 
 
     @FXML 
     private LineChart<Number, Number> chart;
@@ -65,14 +65,14 @@ public class MainController {
     private ToggleGroup group;
     
     @FXML
-    private double d, theta, I0, L, Y, waveLambda;
+    private double d, theta, I0, L, waveLambda;
     
     @FXML
     private MenuBar menubar;
    	double max;
    	
    	
-   	double phase;
+   	double phase, phase2;
 	double width, min, submax;
 	String widthParse, minParse, submaxParse;
 	
@@ -109,9 +109,8 @@ public class MainController {
     	I0 = Double.parseDouble(intensity.getText());
     	d = Double.parseDouble(slitsDistance.getText());
     	L = Double.parseDouble(distanceScreen.getText());
-    	Y = Double.parseDouble(height.getText());
     	waveLambda = Double.parseDouble(lambda.getText());
-    	System.out.println("Io: " + I0 +"\n" + "d: " + d +"\n" + "L: " + L +"\n"+ "Y: " + Y +"\n" + "waveLambda: " + waveLambda +"\n");
+    	System.out.println("Io: " + I0 +"\n" + "d: " + d +"\n" + "L: " + L +"\n"+ "Y: " + "waveLambda: " + waveLambda +"\n");
     	slits = Integer.parseInt(slitsNumber.getText());
 		System.out.println("SLits number entered: " + slits);
 		return true;	
@@ -225,11 +224,11 @@ public class MainController {
     	Stage newWindow = new Stage();
     	newWindow.setTitle("Calculations");
 	        
-    	Scene scene2 = new Scene(root);
+    	Scene scene2 = new Scene(root, 640,480);
+    	
     	newWindow.setScene(scene2);
     	scene2.getStylesheets().add("/application/application2.css");
-	             
-    	newWindow.setTitle("Second Window");
+    	
     	newWindow.show();
 	          
     }
@@ -242,11 +241,16 @@ public class MainController {
     	width = 2*theta;
     	widthParse = Double.toString(width);
     	//minimum w mm
-    	min = theta*waveLambda*L/(d*360*1000000);
+    	min = phase*waveLambda*L/(d*360*1000);
     	minParse =Double.toString(min);
     	
     	//submax in degrees
-    	submax = Math.asin(theta*waveLambda/(d*360*1000000))*180/Math.PI;
+    	//TRY Catch??????
+    	if(slits == 1) {
+    		System.out.println("N cannot be 1 when calculating subsidiary maximum!");
+    	}
+    	phase2 = 2*360/(slits-1);
+    	submax = Math.asin(phase2*waveLambda/(d*360*1000000))*180/Math.PI;
     	submaxParse = Double.toString(submax);
     	
     }

@@ -47,34 +47,29 @@
                         </MenuBar>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <TextField fx:id="slitsDistance" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="165.0" text="Distance between slits [mm]">
+                              <TextField fx:id="slitsDistance" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="200.0" text="Distance between slits [mm]">
                                  <font>
-                                    <Font name="Yu Gothic Light" size="12.0" />
+                                    <Font name="Yu Gothic Light" size="14.0" />
                                  </font>
                               </TextField>
                               <TextField fx:id="slitsNumber" alignment="CENTER" onAction="#parsing" text="Slits number">
                                  <font>
-                                    <Font name="Yu Gothic Light" size="12.0" />
+                                    <Font name="Yu Gothic Light" size="14.0" />
                                  </font>
                               </TextField>
                               <TextField fx:id="intensity" alignment="CENTER" onAction="#parsing" text="Wave intensity [W/m^2]">
                                  <font>
-                                    <Font name="Yu Gothic Light" size="12.0" />
+                                    <Font name="Yu Gothic Light" size="14.0" />
                                  </font>
                               </TextField>
                               <TextField fx:id="lambda" alignment="CENTER" onAction="#parsing" text="Wavelength [nm]">
                                  <font>
-                                    <Font name="Yu Gothic Light" size="12.0" />
+                                    <Font name="Yu Gothic Light" size="14.0" />
                                  </font>
                               </TextField>
                               <TextField fx:id="distanceScreen" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="177.0" text="Distance to the screen [m]">
                                  <font>
-                                    <Font name="Yu Gothic Light" size="12.0" />
-                                 </font>
-                              </TextField>
-                              <TextField fx:id="height" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="163.0" text="Distance to the point [mm]">
-                                 <font>
-                                    <Font name="Yu Gothic Light" size="12.0" />
+                                    <Font name="Yu Gothic Light" size="14.0" />
                                  </font>
                               </TextField>
                            </children>

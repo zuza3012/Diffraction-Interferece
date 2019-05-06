@@ -16,7 +16,7 @@ public class SecondController {
 	private Label centralMaxLabel;
 	
 	@FXML
-	private Label firstMaxLabel;
+	private Label firstMinLabel;
 	
 	@FXML
 	private Label subMaxLabel;
@@ -25,8 +25,8 @@ public class SecondController {
 		
 	}
 	public void setCalculations(String centralmax, String firstmin, String submax){
-		centralMax.setText(centralmax);
-		firstMin.setText(firstmin);
-		subMax.setText(submax);
+		centralMaxLabel.setText(centralmax);
+		firstMinLabel.setText(firstmin);
+		subMaxLabel.setText(submax);
 	}
 }
