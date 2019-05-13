@@ -10,6 +10,9 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
@@ -69,51 +72,55 @@ public class MainController {
     
     @FXML
     private MenuBar menubar;
-   	double max;
+   	double max = 0;
    	
    	
    	double phase, phase2;
 	double width, min, submax;
 	String widthParse, minParse, submaxParse;
 	
+	double[] tableY = new double[401];
+	
 	public MainController() {
 	   
    }
    	
-    public void initialize() {
+    public void initialize() { 
     	//creating chart
-    	xAxis.setAutoRanging(false);
-   	 	xAxis.setLowerBound(-200);
-   	 	xAxis.setUpperBound(200);
-   	 	xAxis.setTickUnit(1);
+    	xAxis.setAutoRanging(true);
+   	 	//xAxis.setLowerBound(-200);
+   	 	//xAxis.setUpperBound(200);
+   	 	xAxis.setTickUnit(40);
 
     	yAxis.setAutoRanging(false);
     	yAxis.setLowerBound(0);
-       //yAxis.setUpperBound(max);
-  	    yAxis.setTickUnit(5);
+  	    yAxis.setTickUnit(10);
+  	    
+  	    //zamiast tych if-ów w wykresach funkcji ;)
+  	    yAxis.setAutoRanging(true);
     	   
   	    //Adding radiobuttons to the Togglegroup
   	    group = new ToggleGroup();
   	    chartPhase.setToggleGroup(group);
   	    chartTheta.setToggleGroup(group);
   	    chartY.setToggleGroup(group);
-  	   //chartPhase.setSelected(true);
-      
+  	    chartPhase.setSelected(true);
+ 
     }
     
    
     @FXML
     public boolean  parsing (ActionEvent e) throws ParseException  {
-    	//Wszystko dzia³a, gdy po odtatnim textfield wciœniemy enter
-    	//PLEASE!!! add exceptions and deal with slits parsing(in other function)
     	I0 = Double.parseDouble(intensity.getText());
-    	d = Double.parseDouble(slitsDistance.getText());
-    	L = Double.parseDouble(distanceScreen.getText());
-    	waveLambda = Double.parseDouble(lambda.getText());
-    	System.out.println("Io: " + I0 +"\n" + "d: " + d +"\n" + "L: " + L +"\n"+ "Y: " + "waveLambda: " + waveLambda +"\n");
-    	slits = Integer.parseInt(slitsNumber.getText());
+		d = Double.parseDouble(slitsDistance.getText());
+		L = Double.parseDouble(distanceScreen.getText());
+		waveLambda = Double.parseDouble(lambda.getText());
+		System.out.println("Io: " + I0 +"\n" + "d: " + d +"\n" + "L: " + L +"\n"+ "Y: " + "waveLambda: " + waveLambda +"\n");
+		
+		slits = Integer.parseInt(slitsNumber.getText());
 		System.out.println("SLits number entered: " + slits);
-		return true;	
+		
+		return true;
     }
    
     
@@ -125,86 +132,51 @@ public class MainController {
         xAxis.setLabel("Phi [rad]");
         yAxis.setLabel("Intensity [W/m^2]");
         
-        XYChart.Series data1 = new XYChart.Series();
+        XYChart.Series<Number, Number> data1 = new XYChart.Series<Number, Number>();
+        
+        double n = -200;
+        double j = -200;
+       
+        tableY[0] = 0;
         
         if(chartPhase.isSelected()) {
-        	   for(int i = -200; i < 200; i++) {
-               	double n = i * 0.01;
-               	double y = I0*(Math.sin(slits*0.5*n))*(Math.sin(slits*0.5*n))/((Math.sin(0.5*n))*(Math.sin(0.5*n)));
-               	data1.getData().add(new XYChart.Data(i, y));
-	               	if(n == 0.1) { 
-	               		max = y;
-	               		yAxis.setUpperBound(max*1.2 );
-	               	}
-               }     
-        	data1.setName(slitsNumber.getText());
-            chart.getData().add(data1);
-           	chart.setLegendVisible(true);
-           	chart.setCreateSymbols(false);
-           	
-           	
-        }
-        //chart.getData().clear(); Jak to bedzie tutaj, to pokazujemy jedna serie, nie wszystkie
-        else if(chartTheta.isSelected()) {
-        	for(int i = -200; i < 200; i++) {
-               	double n = i * 0.01;
-               	
-               	double y = I0*(Math.sin(slits*d*Math.sin(n)*Math.PI/waveLambda))*(Math.sin(slits*d*Math.sin(n)*Math.PI/waveLambda))/((Math.sin(d*Math.sin(n)*Math.PI/waveLambda))*(Math.sin(d*Math.sin(n)*Math.PI/waveLambda)));
-               	data1.getData().add(new XYChart.Data(i, y));
-	               	if(n == 0.1) { 
-	               		max = y;
-	               		yAxis.setUpperBound(max*1.2 );
-	               	}
-        	}	
-        	data1.setName(slitsNumber.getText());
-            chart.getData().add(data1);
-           	chart.setLegendVisible(true);
-           	chart.setCreateSymbols(false);
-           	
-        }else if (chartY.isSelected()) {
-        	for(int i = -200; i < 200; i++) {
-               	double n = i * 0.01;
-               	
-               	double y = I0*(Math.sin(slits*d*n/(waveLambda*L)))*(Math.sin(slits*d*n/(waveLambda*L)))/((Math.sin(d*n/(waveLambda*L)))*(Math.sin(d*n/(waveLambda*L))));
-               	data1.getData().add(new XYChart.Data(i, y));
-	               	if(n == 0.1) { 
-	               		max = y;
-	               		yAxis.setUpperBound(max*1.2 );
-	               	}
-        	}	
-        	data1.setName(slitsNumber.getText());
-            chart.getData().add(data1);
-           	chart.setLegendVisible(true);
-           	chart.setCreateSymbols(false);
-        }
-        
-        /*poprawiæ! wywala siê na if'ie z porównaniem tablicy
-         * u¿ycie tablicy ma pomóæ ustaliæ maksymaln¹ watotœæ funkcji
-        double n = -200;
-        double max2 = 0;
-        if(chartTheta.isSelected()) {
-        	System.out.println("Checking");
-        double[] tableY = new double[400];
-        tableY[0] = 0;
-        for(int i = 0; i < 400; i++) {
-        	System.out.println("Checking2");
-        	tableY[i] = I0*(Math.sin(slits*d*Math.sin(n)*Math.PI/waveLambda))*(Math.sin(slits*d*Math.sin(n)*Math.PI/waveLambda))/((Math.sin(d*Math.sin(n)*Math.PI/waveLambda))*(Math.sin(d*Math.sin(n)*Math.PI/waveLambda)));
-        	n += 0.01;
-        	if (tableY[i] > tableY[i-1]) {
-        		max2 = tableY[i];
+        	System.out.println("Phase chart starts drawing...");
+        	for(int i = 0; i < 401; i++) {
+	        	tableY[i] = I0*(Math.sin(slits*0.5*n))*(Math.sin(slits*0.5*n))/((Math.sin(0.5*n))*(Math.sin(0.5*n)));
+	        	n += 0.01;
+	        	j++;
+	        	//if (max < tableY[i]) 
+	        	//	max = tableY[i];
+	        	data1.getData().add(new XYChart.Data<>(j, tableY[i]));
         	}
         	
-        	data1.getData().add(new XYChart.Data(i, tableY[i]));
+        }else if(chartTheta.isSelected()) {
+        	System.out.println("Theta chart starts drawing...");
+	        for(int i = 0; i < 401; i++) {
+	        	tableY[i] = I0*(Math.sin(slits*d*Math.sin(n)*Math.PI/waveLambda))*(Math.sin(slits*d*Math.sin(n)*Math.PI/waveLambda))/((Math.sin(d*Math.sin(n)*Math.PI/waveLambda))*(Math.sin(d*Math.sin(n)*Math.PI/waveLambda)));
+	        	n += 0.01;
+	        	j++;
+	        	//if (max < tableY[i]) 
+	        	//	max = tableY[i];
+	        	data1.getData().add(new XYChart.Data<>(j, tableY[i]));
+	        }
+        }else if (chartY.isSelected()) {
+        	for(int i = 0; i < 401; i++) {
+	        	tableY[i] = I0*(Math.sin(slits*d*n/(waveLambda*L)))*(Math.sin(slits*d*n/(waveLambda*L)))/((Math.sin(d*n/(waveLambda*L)))*(Math.sin(d*n/(waveLambda*L))));
+	        	n += 0.01;
+	        	j++;
+	        	//if (max < tableY[i]) 
+	        	//	max = tableY[i];
+	        	data1.getData().add(new XYChart.Data<>(j, tableY[i]));
+	        }
         }
-       
-        yAxis.setUpperBound(max2);
+        
+        yAxis.setUpperBound(max*1.1);
         data1.setName(slitsNumber.getText());
         chart.getData().add(data1);
        	chart.setLegendVisible(true);
        	chart.setCreateSymbols(false);
-        
-        }
-    	*/
+    	
     }
 
     public void openWindow(ActionEvent e) throws IOException {
@@ -234,29 +206,37 @@ public class MainController {
     }
 
     public void calculate() {
-    	
     	phase = 360/slits;
+    	
     	//theta in degrees
     	theta = phase*waveLambda/(d*360*1000000)*180/Math.PI;
     	width = 2*theta;
     	widthParse = Double.toString(width);
+    	
     	//minimum w mm
     	min = phase*waveLambda*L/(d*360*1000);
     	minParse =Double.toString(min);
     	
     	//submax in degrees
-    	//TRY Catch??????
-    	if(slits == 1) {
+    	try {
+    		phase2 = 2*360/(slits-1);
+        	submax = Math.asin(phase2*waveLambda/(d*360*1000000))*180/Math.PI;
+        	submaxParse = Double.toString(submax);
+    		
+    	}catch (ArithmeticException e) {
     		System.out.println("N cannot be 1 when calculating subsidiary maximum!");
+    		System.out.println("Catched: " + e);
+    		if(slits == 1) {
+	    		Alert alert = new Alert(AlertType.INFORMATION);
+	    		alert.setTitle("Calculating subsidiary maximum error");
+	    		alert.setHeaderText(null);
+	    		alert.setContentText("2nd subsidiary maximum does not exist");
+	    		alert.showAndWait();
+    		}
+    	
     	}
-    	phase2 = 2*360/(slits-1);
-    	submax = Math.asin(phase2*waveLambda/(d*360*1000000))*180/Math.PI;
-    	submaxParse = Double.toString(submax);
-    	
     }
-
-    	
-    	
+	
 }
 
 
