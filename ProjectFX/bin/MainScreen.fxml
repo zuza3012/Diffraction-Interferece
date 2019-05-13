@@ -27,8 +27,8 @@
                           <menus>
                             <Menu mnemonicParsing="false" text="File">
                               <items>
-                                <MenuItem fx:id="closeItem" mnemonicParsing="false" text="Close" />
-                                    <MenuItem fx:id="saveItem" mnemonicParsing="false" text="Save the chart" />
+                                <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeProgram" text="Close" />
+                                    <MenuItem fx:id="saveItem" mnemonicParsing="false" onAction="#saveAsPng" text="Save the chart" />
                                     <MenuItem fx:id="excelOpen" mnemonicParsing="false" text="Open an excel file..." />
                               </items>
                             </Menu>
@@ -84,7 +84,7 @@
                   </VBox>
                </children>
             </HBox>
-            <LineChart fx:id="chart" prefHeight="662.0" prefWidth="1024.0" title="Intensity Interference Pattern">
+            <LineChart fx:id="chart" prefHeight="662.0" prefWidth="1024.0">
               <xAxis>
                 <NumberAxis side="BOTTOM" fx:id="xAxis" />
               </xAxis>
