@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.Desktop;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,7 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
-
+import org.omg.CORBA.INITIALIZE;
 
 import javafx.animation.PathTransition;
 import javafx.animation.TranslateTransition;
@@ -60,6 +61,8 @@ import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -162,12 +165,11 @@ public class MainController  {
 	private Boolean dataEntered = false;
 	
 	//mine
-	int excelCounter=0;
+	int excelCounter = 0;
 	
-   	
+
     public void initialize()  { 
     	
-
     	animatePlainWave(rect1,0);
     	animatePlainWave(rect2,1.5);
     	animatePlainWave(rect3,3);
@@ -201,6 +203,8 @@ public class MainController  {
 	    
 	  
     }
+    
+   
     
 //    @Override
 //	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -536,8 +540,46 @@ public class MainController  {
 	    rectangleTransition.play();
 
 	}
-
-
+	
+	
+	 public void openWindowThree() {
+	    	System.out.println("Trying to open a third window...");
+		 	try { 
+	    	//Load second scene
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/ThirdScreen.fxml"));
+	    	Parent root = loader.load();
+		              
+	    	//Get controller of scene3
+	    	ThirdController thirdController = loader.getController();
+	    	//Pass whatever data you want. You can have multiple method calls here
+	    	//this.calculate();
+	    	//thirdController.setCalculations(widthParse, minParse, submaxParse);
+		  
+	    	//Show scene 2 in new window  
+	    	Stage newWindow = new Stage();
+	    	newWindow.setTitle("Find out more");
+		        
+	    	Scene scene3 = new Scene(root, 960,540);
+	    	
+	    	newWindow.setScene(scene3);
+	    	scene3.getStylesheets().add("/application/application3.css");
+	    	
+	    	newWindow.show();
+		 	}catch (IOException e){
+	    		System.out.println("Catched: " + e);
+	    		
+		 	}      
+	    }
+	
+	
+	
+	public void gotoURL() {
+		openWindowThree();
+		
+		
+		
+		
+	}
 
 
 }

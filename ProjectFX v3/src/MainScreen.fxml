@@ -47,7 +47,7 @@
                             <Menu mnemonicParsing="false" text="Help">
                               <items>
                                 <MenuItem fx:id="aboutProgram" mnemonicParsing="false" onAction="#info" text="About program" />
-                                    <MenuItem fx:id="moreURL" mnemonicParsing="false" text="Interference and Difraction URL" />
+                                    <MenuItem fx:id="moreURL" mnemonicParsing="false" onAction="#gotoURL" text="Interference and Difraction URL" />
                               </items>
                             </Menu>
                           </menus>
