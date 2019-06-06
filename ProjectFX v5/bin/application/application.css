@@ -1,0 +1,21 @@
+.root{
+	/*-fx-background-color: #fbf5f3;*/
+	
+}
+
+#chart{
+	/*-fx-background-color:#fbf5f3;*/
+}
+.menu-bar {
+  /*-fx-background-color: derive(#463f3a,20%); */
+}
+.chart{
+	
+}
+
+
+.color-picker .color-picker-label .text {
+    -fx-fill: #000000;
+}
+
+
