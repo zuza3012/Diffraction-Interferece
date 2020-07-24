@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="951.0" prefWidth="1312.0" stylesheets="/application/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <VBox fx:id="vbox" prefHeight="768.0" prefWidth="1024.0">
+         <children>
+            <HBox fx:id="hbox" prefHeight="24.0" prefWidth="1304.0">
+               <children>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="22.0" prefWidth="1310.0">
+                     <children>
+                        <MenuBar fx:id="menubar" disable="false" prefHeight="14.0" prefWidth="995.0">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeProgram" text="Close" />
+                                    <MenuItem fx:id="saveItem" mnemonicParsing="false" onAction="#saveAsPng" text="Save the chart" />
+                                    <MenuItem fx:id="excelSave" mnemonicParsing="false" onAction="#saveExcel" text="Save an excel file..." />
+                                    <MenuItem fx:id="loadExcel" mnemonicParsing="false" onAction="#loadExcel" text="Load an excel file..." />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Edit">
+                              <items>
+                                <MenuItem fx:id="settings" mnemonicParsing="false" text="Settings..." />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                              <items>
+                                <MenuItem fx:id="aboutProgram" mnemonicParsing="false" onAction="#info" text="About program" />
+                                    <MenuItem fx:id="moreURL" mnemonicParsing="false" text="Interference and Difraction URL" />
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <SplitPane dividerPositions="0.5" prefHeight="535.0" prefWidth="1310.0">
+               <items>
+                  <LineChart fx:id="chart" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="643.0">
+                    <xAxis>
+                      <NumberAxis prefHeight="0.0" prefWidth="750.0" side="BOTTOM" fx:id="xAxis" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="yAxis" side="LEFT" />
+                    </yAxis>
+                  </LineChart>
+                  <VBox prefHeight="553.0" prefWidth="601.0">
+                     <children>
+                        <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="651.0" />
+                        <TextField fx:id="slitsDistance" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="200.0" promptText="Distance between slits [mm]" style="-fx-prompt-text-fill: inherit;">
+                           <font>
+                              <Font name="Bell MT" size="17.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <Region layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="651.0" />
+                        <TextField fx:id="intensity" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="200.0" promptText="Wave intensity [W/m^2]" style="-fx-prompt-text-fill: inherit;">
+                           <font>
+                              <Font name="Bell MT" size="17.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <Region layoutX="10.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="651.0" />
+                        <TextField fx:id="lambda" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="200.0" promptText="Wavelength [nm]" style="-fx-prompt-text-fill: inherit;">
+                           <font>
+                              <Font name="Bell MT" size="17.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <Region layoutX="10.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="651.0" />
+                        <TextField fx:id="distanceScreen" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="200.0" promptText="Distance to the screen [m]" style="-fx-prompt-text-fill: inherit;">
+                           <font>
+                              <Font name="Bell MT" size="17.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <Region layoutX="10.0" layoutY="178.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="651.0" />
+                        <TextField fx:id="slitsNumber" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="200.0" promptText="Slits number" style="-fx-prompt-text-fill: inherit;">
+                           <font>
+                              <Font name="Bell MT" size="17.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <Region layoutX="10.0" layoutY="226.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="652.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Region prefHeight="21.0" prefWidth="289.0" />
+                              <Label prefHeight="20.0" prefWidth="112.0" text="Type of chart">
+                                 <font>
+                                    <Font name="Bell MT" size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="651.0">
+                           <children>
+                              <Region layoutX="256.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="152.0" />
+                              <RadioButton fx:id="chartPhase" mnemonicParsing="false" text="I(Ф)">
+                                 <font>
+                                    <Font name="Yu Gothic Light" size="14.0" />
+                                 </font>
+                              </RadioButton>
+                              <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="115.0" />
+                              <RadioButton fx:id="chartTheta" mnemonicParsing="false" text="I(θ)">
+                                 <font>
+                                    <Font name="Yu Gothic Light" size="14.0" />
+                                 </font>
+                              </RadioButton>
+                              <Region layoutX="58.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="126.0" />
+                              <RadioButton fx:id="chartY" mnemonicParsing="false" text="I(y)">
+                                 <font>
+                                    <Font name="Yu Gothic Light" size="14.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="657.0">
+                           <children>
+                              <Region layoutX="100.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="152.0" />
+                              <Button fx:id="chartBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#drawChart" text="Draw Chart">
+                                 <font>
+                                    <Font name="Bell MT" size="15.0" />
+                                 </font>
+                              </Button>
+                              <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="152.0" />
+                              <Button fx:id="moreBtn" mnemonicParsing="false" onAction="#openWindow" text="More calculations...">
+                                 <font>
+                                    <Font name="Bell MT" size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Region layoutX="10.0" layoutY="416.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="115.0" />
+                        <Region maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="115.0" />
+                        <Region layoutX="10.0" layoutY="274.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="651.0" />
+                        <Region layoutX="10.0" layoutY="491.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="651.0" />
+                        <Region layoutX="10.0" layoutY="274.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="651.0" />
+                        <Region layoutX="10.0" layoutY="274.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="651.0" />
+                        <HBox prefHeight="19.0" prefWidth="666.0" />
+                        <HBox layoutX="10.0" layoutY="543.0" prefHeight="19.0" prefWidth="666.0" />
+                     </children>
+                  </VBox>
+               </items>
+            </SplitPane>
+         </children>
+      </VBox>
+      <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutY="960.0" stroke="BLACK" strokeType="INSIDE" width="647.0" />
+      <Rectangle fx:id="rect2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutY="960.0" stroke="BLACK" strokeType="INSIDE" width="647.0" />
+      <Rectangle fx:id="rect3" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutY="960.0" stroke="BLACK" strokeType="INSIDE" width="647.0" />
+      <Rectangle fx:id="rect4" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutY="960.0" stroke="BLACK" strokeType="INSIDE" width="647.0" />
+      <Rectangle fx:id="rect5" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutY="960.0" stroke="BLACK" strokeType="INSIDE" width="647.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="10.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="647.0" />
+      <Arc fx:id="arc1" fill="DODGERBLUE" layoutX="325.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc3" fill="DODGERBLUE" layoutX="380.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc2" fill="DODGERBLUE" layoutX="270.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc11" fill="DODGERBLUE" layoutX="600.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc5" fill="DODGERBLUE" layoutX="435.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc7" fill="DODGERBLUE" layoutX="490.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc9" fill="DODGERBLUE" layoutX="545.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc4" fill="DODGERBLUE" layoutX="215.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc6" fill="DODGERBLUE" layoutX="160.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc8" fill="DODGERBLUE" layoutX="105.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc10" fill="DODGERBLUE" layoutX="50.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc12" fill="DODGERBLUE" layoutX="325.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc22" fill="DODGERBLUE" layoutX="270.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc32" fill="DODGERBLUE" layoutX="380.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc42" fill="DODGERBLUE" layoutX="215.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc52" fill="DODGERBLUE" layoutX="435.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc62" fill="DODGERBLUE" layoutX="160.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc72" fill="DODGERBLUE" layoutX="490.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc82" fill="DODGERBLUE" layoutX="105.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc92" fill="DODGERBLUE" layoutX="545.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc102" fill="DODGERBLUE" layoutX="50.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc112" fill="DODGERBLUE" layoutX="600.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc13" fill="DODGERBLUE" layoutX="325.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc33" fill="DODGERBLUE" layoutX="380.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc23" fill="DODGERBLUE" layoutX="270.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc113" fill="DODGERBLUE" layoutX="600.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc53" fill="DODGERBLUE" layoutX="435.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc73" fill="DODGERBLUE" layoutX="490.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc93" fill="DODGERBLUE" layoutX="545.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc43" fill="DODGERBLUE" layoutX="215.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc63" fill="DODGERBLUE" layoutX="160.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc83" fill="DODGERBLUE" layoutX="105.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc103" fill="DODGERBLUE" layoutX="50.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc14" fill="DODGERBLUE" layoutX="325.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc24" fill="DODGERBLUE" layoutX="270.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc34" fill="DODGERBLUE" layoutX="380.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc44" fill="DODGERBLUE" layoutX="215.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc54" fill="DODGERBLUE" layoutX="435.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc64" fill="DODGERBLUE" layoutX="160.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc74" fill="DODGERBLUE" layoutX="490.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc84" fill="DODGERBLUE" layoutX="105.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc94" fill="DODGERBLUE" layoutX="545.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc104" fill="DODGERBLUE" layoutX="50.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      <Arc fx:id="arc114" fill="DODGERBLUE" layoutX="600.0" layoutY="848.0" length="180.0" radiusX="10.0" radiusY="10.0" stroke="BLACK" strokeType="INSIDE">
+         <effect>
+            <MotionBlur radius="10.0" />
+         </effect>
+      </Arc>
+      
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="435.0" layoutX="645.0" layoutY="523.0" stroke="BLACK" strokeType="INSIDE" width="675.0" />
+      <ToggleButton layoutX="904.0" layoutY="778.0" mnemonicParsing="false" onAction="#startOrStopAnimation" prefHeight="80.0" prefWidth="161.0" text="START/STOP">
+         <font>
+            <Font name="Bell MT" size="19.0" />
+         </font></ToggleButton>
+      <Rectangle fx:id="slitRectangle1" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="311.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="slitRectangle2" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="256.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="slitRectangle3" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="366.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="slitRectangle4" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="201.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="slitRectangle5" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="421.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="slitRectangle6" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="146.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="slitRectangle7" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="476.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="slitRectangle8" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="91.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="slitRectangle9" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="531.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="slitRectangle10" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="36.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <Rectangle fx:id="slitRectangle11" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="10.0" layoutX="586.0" layoutY="848.0" stroke="BLACK" strokeType="INSIDE" width="28.0" />
+      <ColorPicker fx:id="colorPicker" editable="true" layoutX="750.0" layoutY="589.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#changeWaveColor" prefHeight="52.0" prefWidth="115.0" />
+      <Slider fx:id="mySlider" blockIncrement="0.02" layoutX="1138.0" layoutY="602.0" max="0.7" min="0.02" orientation="VERTICAL" value="0.7" />
+      <Label layoutX="1168.0" layoutY="649.0" prefHeight="55.0" prefWidth="112.0" text="Wave speed">
+         <font>
+            <Font name="Bell MT Bold" size="17.0" />
+         </font></Label>
+      <Button layoutX="750.0" layoutY="659.0" mnemonicParsing="false" onAction="#parsing" prefHeight="62.0" prefWidth="115.0" text="ENTER DATA" />
+   </children>
+</Pane>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="/application/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <VBox fx:id="vbox" prefHeight="768.0" prefWidth="1024.0">
+         <children>
+            <HBox fx:id="hbox" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="55.0" prefWidth="1058.0">
+                     <children>
+                        <MenuBar fx:id="menubar" prefHeight="26.0" prefWidth="1011.0">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem fx:id="close" mnemonicParsing="false" onAction="#closeProgram" text="Close" />
+                                    <MenuItem fx:id="saveItem" mnemonicParsing="false" onAction="#saveAsPng" text="Save the chart" />
+                                    <MenuItem fx:id="excelOpen" mnemonicParsing="false" text="Open an excel file..." />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Edit">
+                              <items>
+                                <MenuItem fx:id="settings" mnemonicParsing="false" text="Settings..." />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                              <items>
+                                <MenuItem fx:id="aboutProgram" mnemonicParsing="false" onAction="#info" text="About program" />
+                                    <MenuItem fx:id="moreURL" mnemonicParsing="false" text="Interference and Difraction URL" />
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="slitsDistance" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="200.0" text="Distance between slits [mm]">
+                                 <font>
+                                    <Font name="Yu Gothic Light" size="14.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="slitsNumber" alignment="CENTER" onAction="#parsing" text="Slits number">
+                                 <font>
+                                    <Font name="Yu Gothic Light" size="14.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="intensity" alignment="CENTER" onAction="#parsing" text="Wave intensity [W/m^2]">
+                                 <font>
+                                    <Font name="Yu Gothic Light" size="14.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="lambda" alignment="CENTER" onAction="#parsing" text="Wavelength [nm]">
+                                 <font>
+                                    <Font name="Yu Gothic Light" size="14.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="distanceScreen" alignment="CENTER" onAction="#parsing" prefHeight="26.0" prefWidth="177.0" text="Distance to the screen [m]">
+                                 <font>
+                                    <Font name="Yu Gothic Light" size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <LineChart fx:id="chart" prefHeight="662.0" prefWidth="1024.0">
+              <xAxis>
+                <NumberAxis side="BOTTOM" fx:id="xAxis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT" />
+              </yAxis>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </LineChart>
+            <Pane prefHeight="198.0" prefWidth="1024.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="1024.0">
+                     <children>
+                        <Button fx:id="chartBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#drawChart" text="Draw Chart">
+                           <font>
+                              <Font name="Yu Gothic Light" size="14.0" />
+                           </font>
+                        </Button>
+                        <Region prefHeight="110.0" prefWidth="46.0" />
+                        <Button fx:id="moreBtn" mnemonicParsing="false" onAction="#openWindow" text="More calculations...">
+                           <font>
+                              <Font name="Yu Gothic Light" size="14.0" />
+                           </font>
+                        </Button>
+                        <Region prefHeight="200.0" prefWidth="200.0" />
+                        <RadioButton fx:id="chartPhase" mnemonicParsing="false" text="I(Ф)">
+                           <font>
+                              <Font name="Yu Gothic Light" size="14.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="chartTheta" mnemonicParsing="false" text="I(θ)">
+                           <font>
+                              <Font name="Yu Gothic Light" size="14.0" />
+                           </font>
+                        </RadioButton>
+                        <RadioButton fx:id="chartY" mnemonicParsing="false" text="I(y)">
+                           <font>
+                              <Font name="Yu Gothic Light" size="14.0" />
+                           </font>
+                        </RadioButton>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</Pane>
